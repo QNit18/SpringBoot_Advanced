@@ -42,6 +42,8 @@ public class SecurityConfig {
         httpSecurity.oauth2ResourceServer(oauth2 ->
                 oauth2.jwt(jwtConfigurer -> jwtConfigurer.decoder(jwtDecoder())
                         .jwtAuthenticationConverter(jwtAuthenticationConverter()))
+                        // Khi mà authentication faild thì điều hướng tới
+                        .authenticationEntryPoint(new JwtAuthenticationEntryPoint())
         );
 
         // Bảo vệ website bởi các cross site : Tắt đi
