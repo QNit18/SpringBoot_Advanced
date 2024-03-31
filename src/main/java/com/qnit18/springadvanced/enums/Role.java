@@ -4,3 +4,11 @@ public enum Role {
     ADMIN,
     USER
 }
+
+
+/**
+ *  User -> many Role
+ *      Role -> many Permission
+ *
+ *
+ * */

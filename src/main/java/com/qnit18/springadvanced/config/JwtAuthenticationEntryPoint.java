@@ -13,7 +13,7 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import java.io.IOException;
 
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
-    // Xay ra khi 1 exception xay ra khi authentication faild
+    // Xay ra khi 1 exception xay ra khi authentication fail
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)
             throws IOException, ServletException {
@@ -33,7 +33,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
         response.getWriter().write(objectMapper.writeValueAsString(apiResponse));
 
-        // gửi về cho client
+        // nó đảm bảo rằng mọi dữ liệu đã được viết vào response đã được gửi đi và không còn ở trong bộ đệm nữa.
         response.flushBuffer();
     }
 }
