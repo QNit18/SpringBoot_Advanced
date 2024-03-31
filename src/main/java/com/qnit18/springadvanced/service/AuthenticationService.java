@@ -36,6 +36,7 @@ import java.util.StringJoiner;
 @Slf4j
 public class AuthenticationService {
     UserRepository userRepository;
+    PasswordEncoder passwordEncoder;
 
     @NonFinal
     @Value("${jwt.signerKey}")
@@ -64,7 +65,6 @@ public class AuthenticationService {
         var user = userRepository.findByUsername(request.getUsername())
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
 
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
         boolean authenticated = passwordEncoder.matches(request.getPassword(), user.getPassword());
 
         if (!authenticated){
@@ -84,7 +84,7 @@ public class AuthenticationService {
         // Tạo header bằng HS512
         JWSHeader header = new JWSHeader(JWSAlgorithm.HS512);
 
-        // Tajo data
+        // Tạo data của payload
         JWTClaimsSet jwtClaimsSet = new JWTClaimsSet.Builder()
                 .subject(user.getUsername())
                 .issuer("qnit18.com")
@@ -97,9 +97,11 @@ public class AuthenticationService {
         // Tạo payload
         Payload payload = new Payload(jwtClaimsSet.toJSONObject());
 
+        // Đối tượng mang cả 2 giá trị
         JWSObject jwsObject = new JWSObject(header, payload);
 
         try {
+            // Tạo signature
             jwsObject.sign(new MACSigner(SIGNER_KEY.getBytes()));
             return jwsObject.serialize();
         } catch (JOSEException e) {
