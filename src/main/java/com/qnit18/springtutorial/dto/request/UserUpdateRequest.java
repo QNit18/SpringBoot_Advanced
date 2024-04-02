@@ -1,22 +1,21 @@
-package com.qnit18.springadvanced.dto.response;
+package com.qnit18.springtutorial.dto.request;
 
-import com.qnit18.springadvanced.entity.Role;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Builder // Giúp tao ra builder class tien hon
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserResponse {
-    Integer id;
-    String username;
+public class UserUpdateRequest {
+
+    @Size(min = 8, message = "INVALID_PASSWORD")
+    String password;
     String firstName;
     String lastName;
     LocalDate dob;
-    Set<Role> roles;
 }

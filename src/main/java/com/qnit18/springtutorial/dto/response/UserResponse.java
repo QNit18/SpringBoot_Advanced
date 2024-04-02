@@ -1,28 +1,22 @@
-package com.qnit18.springadvanced.entity;
+package com.qnit18.springtutorial.dto.response;
 
-import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
 import java.util.Set;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Entity
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+public class UserResponse {
+    String id;
     String username;
-    String password;
     String firstName;
     String lastName;
     LocalDate dob;
-    @ManyToMany
-    Set<Role> roles;
+    Set<String> roles;
 }
