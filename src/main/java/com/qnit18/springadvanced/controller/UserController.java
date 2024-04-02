@@ -1,6 +1,6 @@
 package com.qnit18.springadvanced.controller;
 
-import com.qnit18.springadvanced.dto.request.ApiResponse;
+import com.qnit18.springadvanced.dto.response.ApiResponse;
 import com.qnit18.springadvanced.dto.request.UserCreationRequest;
 import com.qnit18.springadvanced.dto.request.UserUpdateRequest;
 import com.qnit18.springadvanced.dto.response.UserResponse;

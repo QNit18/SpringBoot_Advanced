@@ -1,11 +1,8 @@
 package com.qnit18.springadvanced.controller;
 
-import com.qnit18.springadvanced.dto.request.ApiResponse;
-import com.qnit18.springadvanced.dto.request.PermissionRequest;
+import com.qnit18.springadvanced.dto.response.ApiResponse;
 import com.qnit18.springadvanced.dto.request.RoleRequest;
-import com.qnit18.springadvanced.dto.response.PermissionResponse;
 import com.qnit18.springadvanced.dto.response.RoleResponse;
-import com.qnit18.springadvanced.service.PermissionService;
 import com.qnit18.springadvanced.service.RoleService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;

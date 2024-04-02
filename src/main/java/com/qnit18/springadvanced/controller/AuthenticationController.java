@@ -1,6 +1,6 @@
 package com.qnit18.springadvanced.controller;
 
-import com.qnit18.springadvanced.dto.request.ApiResponse;
+import com.qnit18.springadvanced.dto.response.ApiResponse;
 import com.qnit18.springadvanced.dto.request.AuthenticationRequest;
 import com.qnit18.springadvanced.dto.request.IntrospectRequest;
 import com.qnit18.springadvanced.dto.response.AuthenticationResponse;

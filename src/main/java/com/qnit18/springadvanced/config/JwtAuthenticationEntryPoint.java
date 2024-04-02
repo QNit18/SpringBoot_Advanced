@@ -1,7 +1,7 @@
 package com.qnit18.springadvanced.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.qnit18.springadvanced.dto.request.ApiResponse;
+import com.qnit18.springadvanced.dto.response.ApiResponse;
 import com.qnit18.springadvanced.exception.ErrorCode;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

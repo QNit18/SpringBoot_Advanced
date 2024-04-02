@@ -1,18 +1,17 @@
-package com.qnit18.springadvanced.dto.request;
+package com.qnit18.springtutorial.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder()
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiResponse <T> {
-    @Builder.Default
-    private int code = 1000;
-    private String message;
-    private T result;
+    int code = 1000;
+    String message;
+    T result;
 }
