@@ -1,5 +1,7 @@
 package com.qnit18.springadvanced.controller;
 
+import com.qnit18.springadvanced.dto.request.LogoutRequest;
+import com.qnit18.springadvanced.dto.request.RefreshRequest;
 import com.qnit18.springadvanced.dto.response.ApiResponse;
 import com.qnit18.springadvanced.dto.request.AuthenticationRequest;
 import com.qnit18.springadvanced.dto.request.IntrospectRequest;
@@ -36,6 +38,22 @@ public class AuthenticationController {
     ApiResponse<IntrospectResponse> authenticate(@RequestBody IntrospectRequest request) throws ParseException, JOSEException {
         var result = authenticationService.introspect(request);
         return ApiResponse.<IntrospectResponse>builder()
+                .result(result)
+                .build();
+    }
+
+    @PostMapping("/logout")
+    ApiResponse<Void> logout(@RequestBody LogoutRequest request)
+            throws ParseException, JOSEException {
+        authenticationService.logout(request);
+        return ApiResponse.<Void>builder().build();
+    }
+
+    @PostMapping("/refresh")
+    ApiResponse<AuthenticationResponse> authenticate(@RequestBody RefreshRequest request)
+            throws ParseException, JOSEException {
+        var result = authenticationService.refreshToken(request);
+        return ApiResponse.<AuthenticationResponse>builder()
                 .result(result)
                 .build();
     }
