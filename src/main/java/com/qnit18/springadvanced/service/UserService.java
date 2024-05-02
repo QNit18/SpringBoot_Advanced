@@ -8,6 +8,7 @@ import com.qnit18.springadvanced.enums.Role;
 import com.qnit18.springadvanced.exception.AppException;
 import com.qnit18.springadvanced.exception.ErrorCode;
 import com.qnit18.springadvanced.mapper.UserMapper;
+import com.qnit18.springadvanced.repository.RoleRepository;
 import com.qnit18.springadvanced.repository.UserRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +32,7 @@ public class UserService {
     UserRepository userRepository;
     UserMapper userMapper;
     PasswordEncoder passwordEncoder;
+    RoleRepository roleRepository;
 
     public UserResponse createUser(UserCreationRequest request){
         if (userRepository.existsByUsername(request.getUsername()))
@@ -51,6 +53,10 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         userMapper.updateUser(user, request);
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+
+        var roles = roleRepository.findAllById(request.getRoles());
+        user.setRoles(new HashSet<>(roles));
 
         return userMapper.toUserResponse(userRepository.save(user));
     }
@@ -68,7 +74,8 @@ public class UserService {
     }
 
 
-    @PreAuthorize("hasRole('ADMIN')") // Kiểm tra trước khi chay method
+//    @PreAuthorize("hasRole('ADMIN')") // Kiểm tra trước khi chay method
+    @PreAuthorize("hasAuthority('APPROVE_POST')")
     public List<UserResponse> getUsers(){
         log.info("Sucess 1");
         return userRepository.findAll().stream()
