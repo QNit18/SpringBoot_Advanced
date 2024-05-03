@@ -8,9 +8,9 @@
 		<version>3.2.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.devteria</groupId>
+	<groupId>com.qnit18</groupId>
 	<artifactId>spring_advanced</artifactId>
-	<name>identity-service</name>
+	<name>spring_advanced</name>
 	<version>0.0.1-SNAPSHOT</version>
 	<description>Identity service</description>
 	<properties>
@@ -69,6 +69,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
 		</dependency>
 
 	</dependencies>
